@@ -1,0 +1,22 @@
+	(1)	(2)
+VARIABLES	entrate_altre_pc	entrate_altre_pc
+		
+treatment_t	-21.900	-81.308
+	(120.248)	(62.926)
+t5000	-99.428	-79.971*
+	(60.743)	(46.526)
+pop5000	0.231	-0.001
+	(0.199)	(0.028)
+treatment_t_int1	-0.130	0.068
+	(0.481)	(0.115)
+t5000_int1	-0.006	0.129
+	(0.266)	(0.120)
+postper	110.189	153.010***
+	(93.931)	(48.283)
+postper_int1	-0.025	-0.168
+	(0.385)	(0.106)
+		
+Observations	1,622	5,858
+R-squared	0.018	0.008
+Robust standard errors in parentheses		
+*** p<0.01, ** p<0.05, * p<0.1		

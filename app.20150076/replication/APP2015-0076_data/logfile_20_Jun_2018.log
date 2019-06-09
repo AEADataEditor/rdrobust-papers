@@ -1,0 +1,91 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  \\rschfs1x\userRS\K-Q\nbs52_RS\Documents\Replication\app.20150076.1\APP2015-0076_data\logfile_20_Jun_2018.log
+  log type:  text
+ opened on:  20 Jun 2018, 10:46:49
+
+. 
+. /* keep this line in the config file */
+. di "=== SYSTEM DIAGNOSTICS ==="
+=== SYSTEM DIAGNOSTICS ===
+
+. di "Stata version: `c(stata_version)'"
+Stata version: 15.1
+
+. di "Updated as of: `c(born_date)'"
+Updated as of: 06 Jun 2018
+
+. di "Flavor:        `c(flavor)'"
+Flavor:        IC
+
+. di "Processors:    `c(processors)'"
+Processors:    8
+
+. di "OS:            `c(os)' `c(osdtl)'"
+OS:            Windows 64-bit
+
+. di "Machine type:  `c(machine_type)'"
+Machine type:  PC (64-bit x86-64)
+
+. di "=========================="
+==========================
+
+. 
+. local pwd : pwd
+
+. capture mkdir "\\rschfs1x\userRS\K-Q\nbs52_RS\Documents\Replication\app.20150076.1\APP2015-0076_data\ado"
+
+. sysdir set PERSONAL "\\rschfs1x\userRS\K-Q\nbs52_RS\Documents\Replication\app.20150076.1\APP2015-0076_data\ado\personal"
+
+. sysdir set PLUS     "\\rschfs1x\userRS\K-Q\nbs52_RS\Documents\Replication\app.20150076.1\APP2015-0076_data\ado\plus"
+
+. sysdir set SITE     "\\rschfs1x\userRS\K-Q\nbs52_RS\Documents\Replication\app.20150076.1\APP2015-0076_data\ado\site"
+
+. 
+. 
+. * Installing or replacing necessary packages
+. ssc install cdfplot, replace
+checking cdfplot consistency and verifying not already installed...
+installing into \\rschfs1x\userRS\K-Q\nbs52_RS\Documents\Replication\app.20150076.1\APP2015-0076_data\ado\plus\...
+installation complete.
+
+. *net install rdrobust, from("https://sites.google.com/site/rdpackages/rdrobust/stata") replace
+. net install st0366.pkg, from("http://www.stata-journal.com/software/sj14-4/")
+checking st0366 consistency and verifying not already installed...
+installing into \\rschfs1x\userRS\K-Q\nbs52_RS\Documents\Replication\app.20150076.1\APP2015-0076_data\ado\plus\...
+installation complete.
+
+. ssc install outreg2, replace
+checking outreg2 consistency and verifying not already installed...
+installing into \\rschfs1x\userRS\K-Q\nbs52_RS\Documents\Replication\app.20150076.1\APP2015-0076_data\ado\plus\...
+installation complete.
+
+. 
+. * Tables in the main paper
+. include tables.do
+
+. /*
+> 
+> Replication code for tables in 
+> 
+>                      "Do Fiscal Rules Matter?" 
+>        by Veronica Grembi, Tommaso Nannicini and Ugo Troiano 
+>            
+>            
+> */
+. 
+. clear all 
+
+. set mem 500m
+set memory ignored.
+    Memory no longer needs to be set in modern Statas; memory adjustments are performed on the fly automatically.
+
+. set matsize 5000
+
+. set more off
+
+. program drop _all
+
+. macro drop _all
+
+. capture log close
