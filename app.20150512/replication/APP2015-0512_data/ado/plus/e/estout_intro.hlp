@@ -1,0 +1,244 @@
+{smcl}
+{* 18may2005}{...}
+{hline}
+Introductory examples for {hi:estout}{right:(SJ5-3: st0085)}
+{hline}
+
+{title:Making regression tables from stored estimates: an introduction}
+
+{p 4 4 2}
+The full syntax of {cmd:estout} is rather complex and is to be found
+in help {help estout}. However, consider the following basic syntax, which
+includes only the most important options:
+
+{p 8 15 2}
+{cmd:estout} [{it:namelist}] [{cmd:using} {it:filename}] [{cmd:,}
+ {cmdab:c:ells:(}{it:array}{cmd:)}
+ {cmdab:s:tats:(}{it:scalarlist}{cmd:)}
+ {cmdab:sty:le:(}{it:style}{cmd:)}
+ {it:more_options}]
+
+{p 4 4 2}
+where {it:namelist} is a list of the names of stored estimates (the
+{it:namelist} can be entered as {cmd:*} to refer to all stored estimates). The
+{cmd:cells()} and {cmd:stats()} options determine the primary contents of
+the table. The {cmd:style()} option determines the basic formatting of the
+table.
+
+
+{title:Basic usage}
+
+{p 4 4 2}
+The general procedure for using {cmd:estout} is to first store several
+models using the {cmd:estimates store} command and then apply {cmd:estout} to
+save or display a table of the estimates. By default, {cmd:estout} produces a
+plain, tab-separated table of the coefficients of the models indicated by the
+command:
+
+        {com}. sysuse auto
+        {txt}(1978 Automobile Data)
+
+        {com}. replace price = price / 1000
+        {txt}price was {res}int{txt} now {res}float
+        {txt}(74 real changes made)
+
+        {com}. replace weight = weight / 1000
+        {txt}weight was {res}int{txt} now {res}float
+        {txt}(74 real changes made)
+
+        {com}. regress price weight mpg
+        (output omitted)
+        {txt}
+        {com}. estimates store m1, title(Model 1)
+        {txt}
+        {com}. generate forXmpg = foreign * mpg
+        {txt}
+        {com}. regress price weight mpg forXmpg foreign
+        (output omitted)
+        {txt}
+        {com}. estimates store m2, title(Model 2)
+        {txt}
+        {com}. estout * using example.txt
+
+        {res}	m1	m2
+        	b	b
+        weight	1.746559	4.613589
+        mpg	-.0495122	.2631875
+        forXmpg		-.3072165
+        foreign		11.24033
+        _cons	1.946068	-14.44958
+        {txt}
+
+{p 4 4 2}
+The table produced by the {cmd:estout} command looks messy in the Stata
+Results window or the Stata log because the columns are tab-separated
+(note that tab characters are not preserved in the Results window or the
+log). However, the stored {cmd:example.txt} would look better if it were
+opened, for example, in a spreadsheet program.
+
+
+{title:Choosing a style}
+
+{p 4 4 2}
+To align the columns, fixed widths can be specified for the columns and tab
+characters can be removed. This is most easily done via the {cmd:style()}
+option, which provides a style called {cmd:fixed}:
+
+        {com}. estout *, style(fixed)
+
+        {res}                       m1           m2
+                                b            b
+        weight           1.746559     4.613589
+        mpg             -.0495122     .2631875
+        forXmpg                      -.3072165
+        foreign                       11.24033
+        _cons            1.946068    -14.44958
+        {txt}
+
+{p 4 4 2}
+Other predefined styles are {cmd:tab} (the default), {cmd:tex}, and
+{cmd:html}, but it is also possible to define one's own styles (see
+help {it:{help estout_defaults_options}}). The {cmd:tex} style, for example,
+modifies the output table for use with LaTeX's tabular environment:
+
+        {com}. estout *, style(tex) varlabels(_cons \_cons)
+
+        {res}            &          m1&          m2\\
+                    &           b&           b\\
+        weight      &    1.746559&    4.613589\\
+        mpg         &   -.0495122&    .2631875\\
+        forXmpg     &            &   -.3072165\\
+        foreign     &            &    11.24033\\
+        \_cons      &    1.946068&   -14.44958\\
+        {txt}
+
+{p 4 4 2}
+Note that {cmd:_cons} has been replaced by its LaTeX equivalent in the example
+above using the {cmd:varlabels()} option (since the underscore character
+produces an error in LaTeX unless it is preceded by a backslash). For more
+information on the {cmd:varlabels()} option, see help
+{it:{help estout_labeling_options}}.
+
+
+{title:The cells option}
+
+{p 4 4 2}
+Use the {cmd:cells()} option to specify the parameter statistics to be
+tabulated and how they are to be arranged. The parameter statistics
+available are {cmd:b} (coefficients, the default), {cmd:se} (standard
+errors), {cmd:t} (t/z statistics), {cmd:p} (p-values), {cmd:ci}
+(confidence intervals; to display the lower and upper bounds in separate
+cells use {cmd:ci_l} and {cmd:ci_u}), as well as any additional
+parameter statistics included in the {cmd:e()}-returns for the models
+(also see help {it:{help estout_parameter_statistics_options}}). For
+example, {cmd:cells(b se)} reports raw coefficients and standard errors:
+
+        {com}. estout *, cells(b se) style(fixed)
+
+        {res}                       m1           m2
+                             b/se         b/se
+        weight           1.746559     4.613589
+                         .6413538     .7254961
+        mpg             -.0495122     .2631875
+                          .086156     .1107961
+        forXmpg                      -.3072165
+                                      .1085307
+        foreign                       11.24033
+                                      2.751681
+        _cons            1.946068    -14.44958
+                          3.59705      4.42572
+        {txt}
+
+{p 4 4 2}
+Multiple statistics are placed in separate rows beneath one another by
+default, as in the example above. However, elements that are listed in
+quotes are placed beside one another. For
+example, specifying {cmd:cells("b se t p")} produces the following table:
+
+        {com}. estout m2, cells("b se t p") style(fixed)
+
+        {res}                       m2
+                                b           se            t            p
+        weight           4.613589     .7254961     6.359219     1.89e-08
+        mpg              .2631875     .1107961     2.375421     .0203122
+        forXmpg         -.3072165     .1085307    -2.830687     .0060799
+        foreign          11.24033     2.751681     4.084896     .0001171
+        _cons           -14.44958      4.42572     -3.26491     .0017061
+        {txt}
+
+{p 4 4 2}
+The two approaches can be combined. For example, {cmd:cells("b p" se)}
+would produce a table with raw coefficients and standard errors beneath one
+another in the first column and p-values in the top row of the second
+column for each model.
+
+{p 4 4 2}
+Note that for each statistic named in the {cmd:cells()} option, a set of
+suboptions may be specified in parentheses. For example, in social sciences,
+it is common to report standard errors or t statistics in parentheses beneath
+the coefficients and to indicate the significance of individual
+coefficients with stars. Furthermore, the results are rounded. Such a
+table can be created using the following procedure:
+
+        {com}. estout *, cells(b(star fmt(%9.3f)) t(par fmt(%9.2f))) style(fixed)
+
+        {res}                       m1              m2
+                              b/t             b/t
+        weight              1.747**         4.614***
+                           (2.72)          (6.36)
+        mpg                -0.050           0.263*
+                          (-0.57)          (2.38)
+        forXmpg                            -0.307**
+                                          (-2.83)
+        foreign                            11.240***
+                                           (4.08)
+        _cons               1.946         -14.450**
+                           (0.54)         (-3.26)
+        {txt}
+
+{p 4 4 2}
+The {cmd:estout} default is to display {cmd:*} for p<.05,
+{cmd:**} for p<.01, and {cmd:***} for p<.001. However, note that
+the significance thresholds and symbols are fully customizable (see the
+{cmd:starlevels} option in help {it:{help estout_significance_stars_options}}).
+
+
+{title:The stats option}
+
+{p 4 4 2}
+Finally, use the {cmd:stats()} option to specify scalar
+statistics to be displayed in the last rows of each model's table. The
+available scalar statistics are {cmd:aic} (Akaike's information criterion),
+{cmd:bic} (Schwarz's information criterion), {cmd:rank} (the rank of
+{cmd:e(V)}, i.e., the number of free parameters in model), {cmd:p} (the
+p-value of the model), as well as any scalar contained in the
+{cmd:e()}-returns for the models (also see help
+{it:{help estout_summary_statistics_options}}). For example, specify
+{cmd:stats(r2 bic N)} to add the R-squared, BIC, and the number of cases to
+the bottom of the table:
+
+        {com}. estout *, stats(r2 bic N) style(fixed)
+
+        {res}                       m1           m2
+                                b            b
+        weight           1.746559     4.613589
+        mpg             -.0495122     .2631875
+        forXmpg                      -.3072165
+        foreign                       11.24033
+        _cons            1.946068    -14.44958
+        r2               .2933891     .5516277
+        bic              356.2918     331.2406
+        N                      74           74
+        {txt}
+
+
+{title:Author}
+
+    Ben Jann, ETH Zurich, jann@soz.gess.ethz.ch
+
+
+{title:Also see}
+
+    Manual:  {hi:[R] estimates}
+
+{p 4 13 2}Online:  help for {help estout}; {help estimates} {p_end}
