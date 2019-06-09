@@ -1,0 +1,63 @@
+$Id: REPLICATION.txt 2647 2018-06-22 19:48:54Z vsn9 $
+$URL: https://forge.cornell.edu/svn/repos/ldi-replication/10.1257/app.20140100/replication-vsn9/REPLICATION.txt $
+
+This file documents the steps undertaken by (USER) to replicate the article
+identified by the DOI represented by this directory.
+
+Replication steps
+=================
+1) Main .do file 
+-Added logging
+-Installed older rdrobust package: Add “net install st0366.pkg, from("http://www.stata-journal.com/software/sj14-4/") replace” to config.do
+-Installed outreg2: Add “ssc install outreg2” to config.do 
+-Installed kdens: Add “ssc install kdens” to config.do 
+-Installed moremata: Add “ssc install moremata” to config.do 
+
+2) Appendix .do file 
+-Added logging 
+-Installed older rdrobust package: Add “net install st0366.pkg, from("http://www.stata-journal.com/software/sj14-4/") replace” to config_appendix.do
+-Installed kdens: Add “ssc install kdens” to config_appendix.do 
+-Installed moremata: Add “ssc install moremata” to config_appendix.do 
+-Adjusted matsize: Add “set matsize 450” to beginning of appendix.do 
+
+Findings
+========
+1) Main text
+Figure 1: No program provided. 
+Figure 2: Looks the same. File is Raw_Fatal_Crash_by_Week. 
+Figure 3: No program provided. 
+Figure 4: Looks the same. File is panels_all_trans. 
+Table 1: Looks the same. 
+Figure 5: Looks the same. File is Perm_Test. 
+Table 2: Looks the same. 
+Table 3: Looks the same 
+Figure 6: Looks the same. File is Fall_light_kdens. 
+Figure 7: Figure is similar but not identical. File is SpringRD_6day_sleep_effect. 
+Table 4: Looks the same. 
+Table 5: Looks the same, although the excel table includes many additional regression coefficients that aren’t in the paper. File is table5_fe_main. 
+Table 6: Looks the same, although the excel table includes many additional regression coefficients that aren’t in the paper. File is table5_nbreg_main.
+Table 7: Looks the same, although the excel table includes many additional regression coefficients that aren’t in the paper. File is old_new_fe. 
+Table 8: Looks the same. 
+2) Online Appendix 
+Figure A-1: Figure is similar but not identical. File is Hist_Fatal_Cash_by_Hour. 
+Table A-1: Looks the same. Note: Authors do not generate an excel sheet for this table so one must look through the log file to view the results. 
+Figure B-1: Looks the same. File is Spring_Resid. 
+Table B-1: Looks the same. File is tablea2_sp_se_rob. 
+Table B-2: Looks the same. File is tablea3_sp_rob.  
+Table B-3: Looks the same. File is tablea4_globalpoly. 
+Table B-4: Looks the same. File is tablea5_fa_rob. 
+Table B-5: Looks the same. File is tableA6_fall_placebo_rob. 
+Table B-6: Looks the same. File is tableA7_Interact. 
+Figure B-2: Looks the same. File is Spring_Resid_Control. 
+Table B-7: Looks the same. File is tableA8_spr_light. 
+Table B-8: Looks the same. File is tableA9_nbreg_main. 
+Figure B-3: Looks the same. File is SpringRD_VMT. 
+Figure B-4: Looks the same. File is old_v_new_spring_crashes. 
+Table C-1: Looks the same. File is tableA10_geo_comb. 
+Table C-2: Looks the same. File is tableA11_geo_comb. 
+
+Classification
+==============
+[ ] full replication
+[X] partial replication (see above)
+[ ] not able to replicate (reasons see above)bove)
