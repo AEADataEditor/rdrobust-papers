@@ -1,0 +1,22 @@
+	(1)	(2)
+VARIABLES	aliquota_irpef	aliquota_irpef
+		
+treatment_t	-0.070*	-0.044*
+	(0.039)	(0.026)
+t5000	-0.018	-0.006
+	(0.014)	(0.010)
+pop5000	0.000	0.000
+	(0.000)	(0.000)
+treatment_t_int1	-0.000	0.000
+	(0.000)	(0.000)
+t5000_int1	0.000	0.000
+	(0.000)	(0.000)
+postper	0.136***	0.140***
+	(0.027)	(0.018)
+postper_int1	-0.000	-0.000
+	(0.000)	(0.000)
+		
+Observations	1,310	2,594
+R-squared	0.171	0.141
+Robust standard errors in parentheses		
+*** p<0.01, ** p<0.05, * p<0.1		

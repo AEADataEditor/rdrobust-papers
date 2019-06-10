@@ -1,0 +1,38 @@
+	(1)
+VARIABLES	deficit_pc
+	
+iolo_treatment_t	-27.653**
+	(13.858)
+iolo_t5000	-11.988
+	(9.493)
+iolo_pop5000	-0.002
+	(0.021)
+iolo_treatment_t_int1	0.013
+	(0.042)
+iolo_t5000_int1	0.028
+	(0.029)
+iolo_postper	17.181*
+	(9.623)
+iolo_postper_int1	-0.035
+	(0.028)
+treatment_t	28.881**
+	(11.707)
+t5000	15.044**
+	(7.591)
+pop5000	-0.010
+	(0.013)
+treatment_t_int1	0.019
+	(0.031)
+t5000_int1	-0.011
+	(0.020)
+postper	-12.177
+	(7.763)
+postper_int1	0.017
+	(0.022)
+term_limit	-3.751
+	(6.638)
+	
+Observations	2,414
+R-squared	0.007
+Robust standard errors in parentheses	
+*** p<0.01, ** p<0.05, * p<0.1	

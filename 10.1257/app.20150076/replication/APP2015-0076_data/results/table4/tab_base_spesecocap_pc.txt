@@ -1,0 +1,22 @@
+	(1)	(2)
+VARIABLES	spesecocap_pc	spesecocap_pc
+		
+treatment_t	102.557	-4.221
+	(101.152)	(83.336)
+t5000	9.476	3.419
+	(54.195)	(37.713)
+pop5000	-0.172	-0.069
+	(0.219)	(0.085)
+treatment_t_int1	0.197	-0.313
+	(0.414)	(0.226)
+t5000_int1	0.288	0.080
+	(0.265)	(0.099)
+postper	118.847*	98.926*
+	(64.359)	(56.243)
+postper_int1	0.126	0.119
+	(0.264)	(0.160)
+		
+Observations	1,724	3,974
+R-squared	0.036	0.017
+Robust standard errors in parentheses		
+*** p<0.01, ** p<0.05, * p<0.1		

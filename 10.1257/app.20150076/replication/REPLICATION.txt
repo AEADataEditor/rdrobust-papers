@@ -1,0 +1,95 @@
+$Id: REPLICATION.txt 2631 2018-06-21 15:42:28Z nbs52 $
+$URL: https://forge.cornell.edu/svn/repos/ldi-replication/10.1257/app.20150076/replication-nbs52/REPLICATION.txt $
+
+This file documents the steps undertaken by (USER) to replicate the article
+identified by the DOI represented by this directory.
+
+Replication steps
+=================
+- Authors' README suggests running "replication.do" in order to install necessary packages. At line 16 - "net install rdrobust" - the given URL no longer works. The command would ideally install the 2014 version of rdrobust. This is the root of the problem, as various commands in the later code rely on options exclusive to the 2014 version of rdrobust. 
+
+- The README then states that one can run "figures.do" to replicate the figures and "tables.do" to replicate the tables. Both codes result in an error message, which states that the "bwselect()" options "IK, CCT, and CV have been depricated."
+
+- After examining the code, I noticed that the authors do in fact use "bwselect(CV)" as an option in many of the rdrobust commands. After reading about the 2016 updates applied to rdrobust, it turns out that the "CV" choice for the bandwidth option was removed because "it appears to be considerably less popular than plug-in bandwidth selection methods in empirical work, and at present it is not theoretically justified nor easily portable to the new settings considered in the upgraded version of rdrobust (for example, inclusion of covariates or clustering)" (Calonico, Cattaneo, and Farrell , 2017). 
+
+- I deleted the sections of code that contained any instances of "bwselect(CV)." These sections were for table 4 and figure 2. I then ran the code without these sections to check the other tables and figures. I discuss the results in the "findings" section below. 
+
+**UPDATE 06/21/2018**
+
+- After updating the author's main replication file so that it correctly installs the older version of rdrobust, the replication was successful. I will document the results below.
+
+Findings
+========
+
+*Tables*
+
+- No code provided for tables 1 and 2 - no statistical analysis is contained in either
+
+- Table 3: all numbers match
+
+- Table 4: could not replicate due to outdated bwselect(CV)
+
+- Table 5: numbers do not match
+
+*Figures*
+
+- Figure 1: Everything matches
+
+- Figure 2: Could not replicate due to outdated bwselect(CV)
+
+- Figure 3: Everything matches
+
+- Figure 4: Everything matches
+
+- Figure 5: Only the blue line appears in the replicated figure, with the correct values. Presumably, this has something to do with figure 2. 
+
+
+************************ POST UPDATE **************************
+
+*Tables*
+
+- No code provided for tables 1 and 2 - no statistical analysis is contained in them
+
+- Table 3: all numbers match. Table 3 is not "outreged" to a separate file; rather, it is displayed in the Stata window. 
+
+- Table 4: The results for this one appear accurate but are confusingly outputted. A folder titled "Table 4" is created in the local directory. It does not form one unified table but contains all of the columns of both panels of table 4. I will list them and label them below.
+
+	- tab_base_aliquota_irpef: Column 6 of Panel B
+	- tab_base_aliquota_ordinaria: Column 5 of Panel B
+	- tab_base_deficit_pc: Column 1 of Panel A
+	- tab_base_entrate_altre_pc: Column 4 of Panel B
+	- tab_base_expend_interest_pc: Column 6 of Panel A
+	- tab_base_imposte: Column 1 of Panel B
+	- tab_base_saldofinanziario: Column 2 of Panel A
+	- tab_base_spesecocap_pc: Column 4 of Panel A
+	- tab_base_spesecor_pc: Column 3 of Panel A
+	- tab_base_tasse: Column 2 of Panel B
+	- tab_base_trafgrants_pc: Column 3 of Panel B
+	
+The "tab_year" files are for the footnotes, which I can not see in the actual paper. All numbers in the above files match the values of the paper. 
+
+- Table 5: The results for this table are outputted in the same way as table 4. I will label the files below.
+
+	- tab_heff_iolo_cov_deficit_pc: treatment x public good, with covariates
+	- tab_heff_iolo_deficit_pc: treatment x public good, without covariates 
+	- tab_hlimit_iolo_cov_deficit_pc: treatment x term limit, with covariates
+	- tab_hlimit_iolo_deficit_pc: treatment x term limit, without covariates
+	- tab_hparties_iolo_cov_deficit_pc: treatment x number of parties, with covariates 
+	- tab_hparties_iolo_deficit_pc: treatment x number of parties, without covariates
+	- tab_hyoung_iolo_cov_deficit_pc: treatment x young cohort, with covariates
+	- tab_hyoung_iolo_deficit_pc: treatment x young cohort, without covariates
+
+The h values, means, and other summary statistics are displayed in the Stata window itself after running the .do file. 
+
+*Figures*
+
+All 5 figures match exactly to the ones displayed in the paper. 
+
+
+
+
+Classification
+==============
+[ ] full replication
+[x] partial replication (see above)
+[ ] not able to replicate (reasons see above)

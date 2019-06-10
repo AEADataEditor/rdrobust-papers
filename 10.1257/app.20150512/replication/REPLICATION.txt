@@ -1,0 +1,72 @@
+$Id: REPLICATION.txt 2282 2018-05-29 19:20:35Z lv39
+$
+$URL: https://forge.cornell.edu/svn/repos/ldi-replication/10.1257/app.20150512/replication-ap676/REPLICATION.txt
+$
+
+This file documents the steps undertaken by (USER) to replicate the article
+identified by the DOI represented by this directory.
+
+
+
+Replication steps
+=================
+
+1. Add line to create a basepath for the local directory of APP2015-0512_data in config file
+2. Add lines at the top of make_pols.do to do the config file, and to change directory to ${basepath}
+3. In top level of APP2015-0512_data, create new directory output
+4. In pols_graphs.do, change the address of global out to ${basepath}/output
+5. In pols_graphs.do, change the address of global fdata to ${basepath}
+6. In pols_graphs.do, change the address on line 25 to $fdata
+7. In table_clearances.do, change the address of global out to ${basepath}/output
+8. In table_clearances.do, change the address of global fdata to ${basepath}
+9. In table_clearances.do, change all lines that begin with "eststo: reg ..." and contain i.egroups, to 2 separate lines:
+	line 1: reg ...
+	line 2: eststo
+10. In table_main.do, change the address of global out to ${basepath}/output
+11. In table_main.do, change the address of global fdata to ${basepath}
+12. In table_main.do, change the address on line 26 to $fdata/elections_con_panel
+13. In table_rz.do, change the address of global out to ${basepath}/output
+14. In table_rz.do, change the address of global fdata to ${basepath}
+15. In table_stocks.do, change the address of global fdata to ${basepath}
+16. In table_stocks.do, change the address of global out to ${basepath}/output
+17. In table_summary.do, change the address of global fdata to ${basepath}
+18. In table_summary.do, change the address of global out to ${basepath}/output
+19. Install following packages: winsor, binscatter, st0085_2, st0366 (including all ancillary files), 
+
+
+
+
+
+Findings
+========
+
+Figure 1: No program provided
+Figure 2: created by pols_graphs.do, looks the same
+Figure 3: No program provided
+Table 1: created by table_summary.do, numbers are approx. same, many off by 1 digit, but there are no exact matches.
+Discrepencies could be caused by different software versions/hardware.
+Figure 4: created by pols_graphs.do, looks the same
+Table 2: created by table_main.do, visual inspection of numbers made, all numbers seem to match
+
+Figure 5: created by pols_graphs.do, looks the same
+Table 3: created by table_main.do, visual inspection of numbers made, all numbers seem to match
+Table 4: created by table_stocks.do, visual inspection of numbers made, all numbers seem to match
+Figure 6: created by table_stocks.do, looks the same
+Figure 7: created by table_stocks.do and table_clearances.do, looks the same
+Table 5: created by table_rz.do, visual inspection of numbers made, all numbers seem to match
+Table 6: created by table_clearances.do, standard errors not included, but all numbers produced match
+Appendix Tables/Figures: No programs provided
+
+
+Classification
+==============
+[X] full replication
+[ ] partial replication (see above)
+[ ] not able to replicate (reasons see above)
+
+
+Suggestions:
+-create a global config file that allows you to change the addresses in all the do files at once
+-list all packages needed to run the programs in the readme
+
+Exit Questionnaire submitted

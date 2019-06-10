@@ -1,0 +1,133 @@
+* 00000002
+*! version 1.0.0
+* Do not erase or edit this file
+* It is used by Stata to track the ado and help
+* files you have installed.
+
+S http://fmwww.bc.edu/repec/bocode/i
+N ivreg2.pkg
+D 27 Jun 2018
+U 1
+d 'IVREG2': module for extended instrumental variables/2SLS and GMM estimation
+d 
+d ivreg2 provides extensions to Stata's official ivregress and
+d newey. Its main capabilities: two-step feasible GMM estimation;
+d continuously updated GMM estimation (CUE); LIML and k-class
+d estimation; automatic output of the Hansen-Sargan or
+d Anderson-Rubin statistic for overidentifying restrictions; C
+d statistic test of exogeneity of subsets of instruments (orthog()
+d option); kernel-based autocorrelation-consistent (AC) and
+d heteroskedastic and autocorrelation-consistent (HAC) estimation,
+d with user-specified choice of kernel; Cragg's "heteroskedastic
+d OLS" (HOLS) estimator; default reporting of large-sample
+d statistics (z and chi-squared rather than t and F); small option
+d to report small-sample statistics; first-stage regression
+d reported with F-test of excluded instruments and R-squared with
+d included instruments "partialled-out"; enhanced Kleibergen-Paap
+d and Cragg-Donald tests for weak instruments, redundancy of
+d instruments, significance of endogenous regressors; two-way
+d clustering of standard errors;  Kiefer and Driscoll-Kraay
+d standard errors. ivreg2 can also be used for ordinary least
+d squares (OLS) estimation using the same command syntax as Stata's
+d official regress and newey. New in this version: ivreg2 now
+d supports factor variables. This is version 4.1.10 of ivreg2,
+d updated from that published in Stata Journal, 5(4), requiring
+d Stata 11.2 or better. Stata 8.2/9.2/10.2 users may use this
+d routine, which will  automatically call ivreg28, ivreg29, or
+d ivreg210, respectively. These versions are now included in the
+d ivreg2 package. Stata 7 users may use the Stata Journal version
+d of ivreg2, accessible via net search ivreg2.
+d 
+d KW: instrumental variables
+d KW: Sargan test
+d KW: robust estimation
+d KW: orthogonality
+d KW: GMM
+d KW: Hansen's J
+d KW: heteroskedastic OLS,
+d 
+d Requires: Stata version 11.2 and ranktest from SSC
+d 
+d 
+d Author: Christopher F Baum, Boston College
+d Support: email baum@@bc.edu
+d 
+d Author: Mark E Schaffer, Heriot-Watt University
+d Support: email m.e.schaffer@@hw.ac.uk
+d 
+d Author: Steven Stillman, Free University of Bozen-Bolzano
+d Support: email  stillman@@motu.org.nz
+d 
+d Distribution-Date: 20180419
+d 
+f i\ivreg2.ado
+f i\ivreg2.sthlp
+f i\ivreg2_p.ado
+f l\livreg2.mlib
+f i\ivreg210.ado
+f i\ivreg210.sthlp
+f i\ivreg210_p.ado
+f i\ivreg29.ado
+f i\ivreg29.hlp
+f i\ivreg29_p.ado
+f i\ivreg29_cue.ado
+f i\ivreg28.ado
+f i\ivreg28.hlp
+f i\ivreg28_p.ado
+f i\ivreg28_cue.ado
+e
+S http://fmwww.bc.edu/repec/bocode/r
+N ranktest.pkg
+D 27 Jun 2018
+U 2
+d 'RANKTEST': module to test the rank of a matrix using the Kleibergen-Paap rk statistic
+d 
+d  ranktest implements the Kleibergen-Paap (2006) rk test for the
+d rank of a matrix.  Tests of the rank of a matrix have many
+d practical applications.  For example, in econometrics the
+d requirement for identification is the rank condition, which
+d states that a particular matrix must be of full column rank.
+d Another example from econometrics concerns cointegration in
+d vector autoregressive (VAR) models; the Johansen trace test is a
+d test of a rank of a particular matrix.  The traditional test of
+d the rank of a matrix for the standard (stationary) case is the
+d Anderson (1951) canonical correlations test. If we denote one
+d list of variables as Y and a second as Z, and we calculate the
+d squared canonical correlations between Y and Z, the LM form of
+d the Anderson test, where the null hypothesis is that the matrix
+d of correlations or regression parameters B between Y and Z has
+d rank(B)=r, is N times the sum of the r+1 largest squared
+d canonical correlations.  A large test statistic and rejection of
+d the null indicates that the matrix has rank at least r+1.  The
+d Cragg-Donald (1993) statistic is a closely related Wald test for
+d the rank of a matrix.  Both the Anderson and Cragg-Donald tests
+d require the assumption that the covariance matrix has a Kronecker
+d form; when this is not so, e.g., when disturbances are
+d heteroskedastic or autocorrelated, the test statistics are no
+d longer valid. The Kleibergen-Paap (2006) rk statistic is a
+d generalization of the Anderson canonical correlation rank test to
+d the case of a non-Kronecker covariance matrix.  The
+d implementation in ranktest will calculate rk statistics that are
+d robust to various forms of heteroskedasticity, autocorrelation,
+d and clustering.
+d 
+d KW: matrix
+d KW: rank
+d KW: collinearity
+d KW: cointegration
+d 
+d Requires: Stata version 11.2 (version 9.2 for ranktest9)
+d 
+d Distribution-Date: 20150124
+d 
+d Author: Frank Kleibergen, Brown University
+d Support: email  Frank_Kleibergen@@brown.edu
+d 
+d Author: Mark E Schaffer, Heriot-Watt University
+d Support: email m.e.schaffer@@hw.ac.uk
+d 
+f r\ranktest.ado
+f r\ranktest9.ado
+f r\ranktest.hlp
+f l\livreg2.mlib
+e

@@ -1,0 +1,58 @@
+{smcl}
+{com}{sf}{ul off}{txt}
+{com}. sysuse auto
+{txt}(1978 Automobile Data)
+
+{com}. regress price weight mpg
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        74
+{txt}{hline 13}{c +}{hline 34}   F(2, 71)        = {res}    14.74
+{txt}       Model {c |} {res}  186321280         2  93160639.9   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}  448744116        71  6320339.67   {txt}R-squared       ={res}    0.2934
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2735
+{txt}       Total {c |} {res}  635065396        73  8699525.97   {txt}Root MSE        =   {res}   2514
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       price{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}weight {c |}{col 14}{res}{space 2} 1.746559{col 26}{space 2} .6413538{col 37}{space 1}    2.72{col 46}{space 3}0.008{col 54}{space 4}  .467736{col 67}{space 3} 3.025382
+{txt}{space 9}mpg {c |}{col 14}{res}{space 2}-49.51222{col 26}{space 2} 86.15604{col 37}{space 1}   -0.57{col 46}{space 3}0.567{col 54}{space 4}-221.3025{col 67}{space 3}  122.278
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1946.069{col 26}{space 2}  3597.05{col 37}{space 1}    0.54{col 46}{space 3}0.590{col 54}{space 4}-5226.245{col 67}{space 3} 9118.382
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo
+{txt}({res}est1{txt} stored)
+
+{com}. regress price weight mpg foreign
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        74
+{txt}{hline 13}{c +}{hline 34}   F(3, 70)        = {res}    23.29
+{txt}       Model {c |} {res}  317252881         3   105750960   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}  317812515        70  4540178.78   {txt}R-squared       ={res}    0.4996
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.4781
+{txt}       Total {c |} {res}  635065396        73  8699525.97   {txt}Root MSE        =   {res} 2130.8
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       price{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}weight {c |}{col 14}{res}{space 2} 3.464706{col 26}{space 2}  .630749{col 37}{space 1}    5.49{col 46}{space 3}0.000{col 54}{space 4} 2.206717{col 67}{space 3} 4.722695
+{txt}{space 9}mpg {c |}{col 14}{res}{space 2}  21.8536{col 26}{space 2} 74.22114{col 37}{space 1}    0.29{col 46}{space 3}0.769{col 54}{space 4}-126.1758{col 67}{space 3}  169.883
+{txt}{space 5}foreign {c |}{col 14}{res}{space 2}  3673.06{col 26}{space 2} 683.9783{col 37}{space 1}    5.37{col 46}{space 3}0.000{col 54}{space 4} 2308.909{col 67}{space 3} 5037.212
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-5853.696{col 26}{space 2} 3376.987{col 37}{space 1}   -1.73{col 46}{space 3}0.087{col 54}{space 4}-12588.88{col 67}{space 3} 881.4934
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo
+{txt}({res}est2{txt} stored)
+
+{com}. estout, style(fixed)
+{res}
+                     est1         est2
+                        b            b
+weight           1.746559     3.464706
+mpg             -49.51222      21.8536
+foreign                        3673.06
+_cons            1946.069    -5853.696
+{txt}
+{com}. sjlog close, replace
+{smcl}
+{com}{sf}{ul off}
